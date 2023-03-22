@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('table', ['users' => User::all()]);
+});
+
+
+Route::get('/user/create', function () {
+    return view('user-form');
+});
+
+
+Route::get('/user/{id}', function (string $id) {
+    return view('user-form', ['user' => User::find($id)]);
 });
